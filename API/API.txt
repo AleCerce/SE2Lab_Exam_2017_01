@@ -19,6 +19,8 @@ paths:
       responses:
         200:
           description: web page with the menu
+        404:
+            description: no list found
           
   /searchPizza:
     post:
@@ -52,12 +54,12 @@ paths:
         - name: ID
           in: formData
           description: ID of the pizza
-          required: false
+          required: true
           type: string
         - name: name
           in: formData
           description: name of the pizza
-          required: false
+          required: true
           type: string
       responses:
         200:
@@ -100,6 +102,14 @@ paths:
             type: array
             items:
               $ref: "#/definitions/pizza"
+        406:
+          description: ID of error
+          schema: 
+            properties:
+              error:
+                type: integer
+        404:
+          description: no pizzas with that ID or name
           
 definitions:
   pizza:

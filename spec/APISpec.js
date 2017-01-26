@@ -79,3 +79,40 @@ describe("Test /searchPizza", function() {
 
 });
 
+
+//Test for /deletePizza
+describe("Test /deletePizza", funtion(){
+         
+        var data = {ID: '1'}; //ID ESISTENTE
+        it("to returns status code 200", function(done) {
+	       client.post(base_url + "deletePizza/", data, function(err, res, body) {
+		   expect(res.statusCode).toBe(200);
+		   done();
+	   });
+	});
+
+        var data1 = {ID: '5'}; //ID NON ESISTENTE
+        it("to returns status code 404", function(done) {
+	       client.post(base_url + "deletePizza/", data1, function(err, res, body) {
+		   expect(res.statusCode).toBe(404);
+		   done();
+	   });
+	});
+        
+        var data2 = {name: 'Margherita'}; //NOME ESISTENTE
+        it("to returns status code 200", function(done) {
+	       client.post(base_url + "deletePizza/", data2, function(err, res, body) {
+		   expect(res.statusCode).toBe(200);
+		   done();
+	   });
+	});
+        var data3 = {name: 'Napoletana'};  //NOME NON ESISTENTE
+        it("to returns status code 404", function(done) {
+	       client.post(base_url + "deletePizza/", data3, function(err, res, body) {
+		   expect(res.statusCode).toBe(404);
+		   done();
+	   });
+	});         
+         
+        
+});
